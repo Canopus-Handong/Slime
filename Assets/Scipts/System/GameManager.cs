@@ -4,15 +4,40 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public static GameManager instance;
+
+    //player related variables
+    public GameObject player;
+    public int currentPlayerHealth;
+    public int maxPlayerHealth = 10;
+    public int dashDmg = 2;
+    public float dashPower=12f;
+    public float dashTime=0.2f;
+    public float dashCoolTime=1f;
+    public float speed = 5f;
+
+    //enemy related variables
+
+    private void Awake() {
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void addPlayerMaxHealth(int health){
+        maxPlayerHealth += health;
     }
+
+    private void Update() {
+        if(!player){
+            player = GameObject.FindGameObjectWithTag("Player");
+            if(player){
+                currentPlayerHealth = maxPlayerHealth;
+                PlayerController pc = player.GetComponent<PlayerController>();
+                pc.setPlayerDash(dashPower,dashDmg,dashTime,dashCoolTime);
+                pc.setPlayerMovementStats(speed);
+                pc.setPlayerHealth(maxPlayerHealth,currentPlayerHealth);
+            }
+
+        }
+    }
+
 }
