@@ -6,11 +6,12 @@ public class CharacterAttack : MonoBehaviour
 {
    public GameManager GM;
     public GameObject jelly;
-    public Transform pos;
+    private Transform pos;
     public float coolTime;
     private float curTime;
     private void Awake() {
          GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+         pos = GameObject.Find("JellyPos").GetComponent<Transform>();
     }
 
     // Update is called once per frame
