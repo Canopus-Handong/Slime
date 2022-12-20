@@ -102,3 +102,4 @@ MonoBehaviour:
   isLayer:
     serializedVersion: 2
     m_Bits: 384
+  isRight: 0
