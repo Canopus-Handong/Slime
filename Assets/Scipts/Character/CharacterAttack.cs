@@ -18,7 +18,7 @@ public class CharacterAttack : MonoBehaviour
     {
        if(curTime<=0){
             if(Input.GetKeyDown(KeyCode.Space)){
-               GM.currentPlayerHealth -= 1;
+               GM.currentHealth -= 1;
                Instantiate(jelly,pos.position,transform.rotation);
                curTime = coolTime;
             }

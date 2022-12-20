@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     float h;
     private float speed;
-    private int maxHealth;
-    private int currentHealth;
     private int dashDamage;
     public bool isFacingRight = true;
     private bool canDash = true;
@@ -24,34 +22,25 @@ public class PlayerController : MonoBehaviour
     private float dashCoolTime;
     private bool jumped = false;
 
+    /*may add more variables in the future*/
     public void setPlayerDash(float dashPower, float dashDmg, float dashTime, float dashCoolTime){
         this.dashPower = dashPower;
         this.dashTime = dashTime;
         this.dashCoolTime = dashCoolTime;
     }
-    /*may add more variables in the future*/
     public void setPlayerMovementStats(float speed){
         this.speed = speed;
     }
 
-    public void setPlayerHealth(int maxHealth, int currentHealth){
-        this.maxHealth = maxHealth;
-        this.currentHealth = currentHealth;
-    }
     private void Awake() {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        currentHealth = maxHealth;
     }
 
-    private void Update() {
-        Move();
-    }
-
-
-    private void Move(){
+    void Update()
+    {
         if(isDashing){
             return;
         }
@@ -60,13 +49,16 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-        if(currentHealth>maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
             StartCoroutine(Dash());
-            currentHealth--;
+            GM.currentHealth--;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(isDashing){
+            return;
         }
         rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
         Flip();
@@ -75,7 +67,6 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded(){
         return Physics2D.OverlapCircle(new Vector2(transform.position.x,transform.position.y-0.6f),0.2f,layerMask);
     }
-
     private void Flip(){
         if(h>0 && !isFacingRight || h<0 && isFacingRight){
             Vector3 localScale = transform.localScale;
@@ -84,43 +75,15 @@ public class PlayerController : MonoBehaviour
             transform.localScale = localScale;
         }
     }
-
-    private IEnumerator Dash(){
-        canDash = false;
-        GM.currentPlayerHealth--;
-        isDashing = true;
-        float originalGravity = rigid.gravityScale;
-        rigid.gravityScale = 0f;
-        rigid.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-        tr.emitting = true;
-        yield return new WaitForSeconds(dashTime);
-        rigid.velocity = Vector2.zero;
-        tr.emitting = false;
-        rigid.gravityScale = originalGravity;
-        isDashing = false;
-        yield return new WaitForSeconds(dashCoolTime);
-        canDash = true;
-    }
-
     void Jump()
     {
         rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
     }
-
-
-
     public void Eat(){
-        currentHealth += 4;
+        GM.currentHealth += 4;
     }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Platform" && jumped){
-            rigid.velocity = Vector2.zero;
-            jumped = !jumped;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Enemy")
         {
@@ -137,9 +100,23 @@ public class PlayerController : MonoBehaviour
                     Destroy(other.gameObject);
                 }
                 else{
-                    currentHealth--;
+                    GM.currentHealth--;
                 }
             }
         } 
+    }
+    private IEnumerator Dash(){
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rigid.gravityScale;
+        rigid.gravityScale = 0f;
+        rigid.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        tr.emitting = false;
+        rigid.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCoolTime);
+        canDash = true;
     }
 }

@@ -19,13 +19,13 @@ public class HpBar : MonoBehaviour{
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        maxHp = GM.maxPlayerHealth;
-        currentHp = GM.currentPlayerHealth;
+        maxHp = GM.maxHealth;
+        currentHp = GM.currentHealth;
     }
 
     private void Update() {
-        currentHp = GM.currentPlayerHealth;
-        maxHp = GM.maxPlayerHealth;
+        currentHp = GM.currentHealth;
+        maxHp = GM.maxHealth;
         hpBar.fillAmount = currentHp/maxHp;
     }
 }
