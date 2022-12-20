@@ -60,8 +60,7 @@ public class Character : MonoBehaviour
     }
 
     private bool IsGrounded(){
-        RaycastHit2D raycastHit = Physics2D.BoxCast(capsuleCollider.bounds.center, capsuleCollider.bounds.size, 0f, Vector2.down, .1f, layerMask);
-        return raycastHit.collider != null;
+        return Physics2D.OverlapCircle(new Vector2(transform.position.x,transform.position.y-0.6f),0.2f,layerMask);
     }
     private void Flip(){
         if(h>0 && !isFacingRight || h<0 && isFacingRight){
