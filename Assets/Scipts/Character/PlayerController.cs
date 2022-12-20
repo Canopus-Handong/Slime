@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private float dashPower;
     private float dashTime;
     private float dashCoolTime;
+    private bool jumped = false;
 
     public void setPlayerDash(float dashPower, float dashDmg, float dashTime, float dashCoolTime){
         this.dashPower = dashPower;
@@ -51,7 +52,8 @@ public class PlayerController : MonoBehaviour
 
 
     //all movement related scrpits
-
+/* 
+//  Move by moving left and right
     private void Move(){
         if(isDashing){
             return;
@@ -72,7 +74,37 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
         Flip();
     }
+*/
 
+//  Move by jumping left and right
+    private void Move(){
+        if(isDashing){
+            return;
+        }
+        h = Input.GetAxisRaw("Horizontal");
+        if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            JumpMove(new Vector2(h*4,Vector2.up.y * 15));
+            if(!jumped){
+                rigid.velocity = Vector2.zero;
+            }
+
+        }
+        if(currentHealth>maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
+            StartCoroutine(Dash());
+            currentHealth--;
+        }
+        Flip();
+    }
+
+    private void JumpMove(Vector2 force){
+        rigid.AddForce(force, ForceMode2D.Impulse);
+        jumped = !jumped;
+    }
     private bool IsGrounded(){
         return Physics2D.OverlapCircle(new Vector2(transform.position.x,transform.position.y-0.6f),0.2f,layerMask);
     }
@@ -94,6 +126,7 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
         tr.emitting = true;
         yield return new WaitForSeconds(dashTime);
+        rigid.velocity = Vector2.zero;
         tr.emitting = false;
         rigid.gravityScale = originalGravity;
         isDashing = false;
@@ -110,6 +143,13 @@ public class PlayerController : MonoBehaviour
 
     public void Eat(){
         currentHealth += 4;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Platform" && jumped){
+            rigid.velocity = Vector2.zero;
+            jumped = !jumped;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
