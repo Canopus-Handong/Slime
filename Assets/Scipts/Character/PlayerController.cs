@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash(){
         canDash = false;
+        GM.currentPlayerHealth--;
         isDashing = true;
         float originalGravity = rigid.gravityScale;
         rigid.gravityScale = 0f;

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     //player related variables
     public GameObject player;
-    public int currentPlayerHealth;
+    public int currentPlayerHealth = 0;
     public int maxPlayerHealth = 10;
     public int dashDmg = 2;
     public float dashPower=12f;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         if(!player){
             player = GameObject.FindGameObjectWithTag("Player");
             if(player){
-                currentPlayerHealth = maxPlayerHealth;
+                if(currentPlayerHealth == 0) currentPlayerHealth = maxPlayerHealth;
                 PlayerController pc = player.GetComponent<PlayerController>();
                 pc.setPlayerDash(dashPower,dashDmg,dashTime,dashCoolTime);
                 pc.setPlayerMovementStats(speed);
