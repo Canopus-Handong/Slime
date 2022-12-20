@@ -11,7 +11,7 @@ public class CharacterAttack : MonoBehaviour
     private float curTime;
     private void Awake() {
          GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-         pos = GameObject.Find("JellyPos").GetComponent<Transform>();
+         pos = GameObject.Find("jellyPos").GetComponent<Transform>();
     }
 
     // Update is called once per frame
