@@ -23,10 +23,11 @@ public class PlayerController : MonoBehaviour
     private bool jumped = false;
 
     /*may add more variables in the future*/
-    public void setPlayerDash(float dashPower, float dashDmg, float dashTime, float dashCoolTime){
+    public void setPlayerDash(float dashPower, int dashDmg, float dashTime, float dashCoolTime){
         this.dashPower = dashPower;
         this.dashTime = dashTime;
         this.dashCoolTime = dashCoolTime;
+        this.dashDamage = dashDmg;
     }
     public void setPlayerMovementStats(float speed){
         this.speed = speed;
