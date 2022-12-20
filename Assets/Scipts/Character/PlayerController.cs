@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private int maxHealth;
     private int currentHealth;
     private int dashDamage;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     private bool canDash = true;
     private bool isDashing;
     private float dashPower;
@@ -51,9 +51,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //all movement related scrpits
-/* 
-//  Move by moving left and right
     private void Move(){
         if(isDashing){
             return;
@@ -74,37 +71,7 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
         Flip();
     }
-*/
 
-//  Move by jumping left and right
-    private void Move(){
-        if(isDashing){
-            return;
-        }
-        h = Input.GetAxisRaw("Horizontal");
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            JumpMove(new Vector2(h*4,Vector2.up.y * 15));
-            if(!jumped){
-                rigid.velocity = Vector2.zero;
-            }
-
-        }
-        if(currentHealth>maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
-            StartCoroutine(Dash());
-            currentHealth--;
-        }
-        Flip();
-    }
-
-    private void JumpMove(Vector2 force){
-        rigid.AddForce(force, ForceMode2D.Impulse);
-        jumped = !jumped;
-    }
     private bool IsGrounded(){
         return Physics2D.OverlapCircle(new Vector2(transform.position.x,transform.position.y-0.6f),0.2f,layerMask);
     }

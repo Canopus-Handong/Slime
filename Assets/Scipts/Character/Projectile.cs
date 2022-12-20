@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isRight=GameObject.Find("Slime").GetComponent<Character>().isFacingRight;
+        isRight=GameObject.Find("Slime").GetComponent<PlayerController>().isFacingRight;
         Invoke("DestroyProjectile",3);
     }
 

@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
+   public GameManager GM;
     public GameObject jelly;
     public Transform pos;
     public float coolTime;
     private float curTime;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Awake() {
+         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -19,7 +18,7 @@ public class CharacterAttack : MonoBehaviour
     {
        if(curTime<=0){
             if(Input.GetKeyDown(KeyCode.Space)){
-               GetComponent<Character>().currentHealth--;
+               GM.currentPlayerHealth -= 1;
                Instantiate(jelly,pos.position,transform.rotation);
                curTime = coolTime;
             }

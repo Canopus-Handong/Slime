@@ -134,10 +134,10 @@ GameObject:
   - component: {fileID: 429574375}
   - component: {fileID: 429574376}
   - component: {fileID: 429574379}
-  - component: {fileID: 429574378}
   - component: {fileID: 429574380}
   - component: {fileID: 429574381}
   - component: {fileID: 429574382}
+  - component: {fileID: 429574383}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Player
@@ -182,27 +182,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &429574378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429574373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2aaf2d36c884ef4da4ebbb95ea8ccba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  Speed: 5
-  maxHealth: 10
-  currentHealth: 0
-  dashDamage: 2
-  isFacingRight: 1
-  tr: {fileID: 429574381}
 --- !u!70 &429574379
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -385,6 +364,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &429574383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429574373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379e4a1449376ef4791a77565522647e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  tr: {fileID: 429574381}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
