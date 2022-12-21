@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float dashPower;
     private float dashTime;
     private float dashCoolTime;
-    private bool jumped = false;
+    public bool canJump = true;
 
     /*may add more variables in the future*/
     public void setPlayerDash(float dashPower, int dashDmg, float dashTime, float dashCoolTime){
@@ -46,9 +47,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
         h = Input.GetAxisRaw("Horizontal");
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
+        if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
-            Jump();
+            StartCoroutine(Jump());
         }
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
             StartCoroutine(Dash());
@@ -76,9 +77,12 @@ public class PlayerController : MonoBehaviour
             transform.localScale = localScale;
         }
     }
-    void Jump()
+    private IEnumerator Jump()
     {
+        canJump = false;
         rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.5f);
+        canJump = true;
     }
     public void Eat(){
         GM.currentHealth += 4;

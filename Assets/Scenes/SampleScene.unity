@@ -383,6 +383,7 @@ MonoBehaviour:
     m_Bits: 128
   tr: {fileID: 429574381}
   isFacingRight: 1
+  canJump: 1
 --- !u!114 &429574384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Platformscript: {fileID: 1134540021}
+  Controllscript: {fileID: 429574373}
   fallGround: 0
 --- !u!1 &519420028
 GameObject:

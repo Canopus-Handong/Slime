@@ -7,6 +7,7 @@ public class JumpAndFall : MonoBehaviour
     Rigidbody2D rigid;
     Collider2D playerCollider, platformCollider;
     public GameObject Platformscript;
+    public GameObject Controllscript;
     public bool fallGround;
     float moveX;
 
@@ -22,10 +23,12 @@ public class JumpAndFall : MonoBehaviour
 
     IEnumerator LayerOpenClose()
     {
+        Controllscript.GetComponent<PlayerController>().canJump = false;
         fallGround = true;
         IgnoreTure();
         yield return new WaitForSeconds(0.2f);
         IgnoreFalse();
+        Controllscript.GetComponent<PlayerController>().canJump = true;
         fallGround = false;
     }
 
