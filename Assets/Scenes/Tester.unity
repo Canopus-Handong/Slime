@@ -366,7 +366,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
@@ -464,7 +464,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -93173604, guid: 4c50899837214044c8e318560d4fa52b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Platformscript: {fileID: 1134540021}
-  Slimescript: {fileID: 0}
+  Slimescript: {fileID: 429574373}
   fallGround: 0
 --- !u!1 &519420028
 GameObject:
