@@ -31,11 +31,10 @@ public class Projectile : MonoBehaviour
             if(ray.collider.tag=="Enemy")
             {
                 ray.collider.GetComponent<Enemy>().TakeDamage(1);
-            }
-            if (ray.collider.tag != "background")
-            {
-                DestroyProjectile();
-            }
+            }   
+            
+            DestroyProjectile();
+            
         }
     }
     void DestroyProjectile()
