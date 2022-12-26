@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - NoDestroy
+  - Platform
+  - Bullet
   layers:
   - Default
   - TransparentFX

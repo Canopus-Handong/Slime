@@ -1,67 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Character : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    float h;
+    
+    public GameManager GM;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     CapsuleCollider2D capsuleCollider;
 
     [SerializeField] private LayerMask layerMask;
-    public float Speed;
-    public int maxHealth = 10;
-    public int currentHealth;
-    public int dashDamage=2;
+    [SerializeField] private TrailRenderer tr;
+    float h;
+    private float speed;
+    private int dashDamage;
     public bool isFacingRight = true;
-
     private bool canDash = true;
     private bool isDashing;
-    private float dashPower=12f;
-    private float dashTime=0.2f;
-    private float dashCoolTime=1f;
-    [SerializeField] private TrailRenderer tr;
+    private float dashPower;
+    private float dashTime;
+    private float dashCoolTime;
+    public bool canJump = true;
 
-    void Awake()
-    {
+    /*may add more variables in the future*/
+    //Dash status
+    public void setPlayerDash(float dashPower, int dashDmg, float dashTime, float dashCoolTime){
+        this.dashPower = dashPower;
+        this.dashTime = dashTime;
+        this.dashCoolTime = dashCoolTime;
+        this.dashDamage = dashDmg;
+    }
+    //Player moving speed
+    public void setPlayerMovementStats(float speed){
+        this.speed = speed;
+    }
+
+    private void Awake() {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        currentHealth = maxHealth;
     }
+
     void Update()
     {
+        //If user is dashing, don't move by keyboard
         if(isDashing){
             return;
         }
         h = Input.GetAxisRaw("Horizontal");
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
+        //If the user is in contact with the floor and canjump with the up button, jump.
+        if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
-            Jump();
+            StartCoroutine(Jump());
         }
-        if(currentHealth>maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
+        //If the user candash with the shift button, dash.
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
             StartCoroutine(Dash());
-            currentHealth--;
+            GM.currentHealth--;
         }
     }
 
     void FixedUpdate()
     {
+        //If user is dashing, don't move by keyboard
+        //If user turn back, turn back the direction of movement and the character
         if(isDashing){
             return;
         }
-        rigid.velocity = new Vector2(h * Speed, rigid.velocity.y);
+        rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
         Flip();
     }
-
+    //If the user is in contact with the platform layer, isgrounded state
     private bool IsGrounded(){
         return Physics2D.OverlapCircle(new Vector2(transform.position.x,transform.position.y-0.6f),0.2f,layerMask);
     }
+    //If user turn back, turn back
     private void Flip(){
         if(h>0 && !isFacingRight || h<0 && isFacingRight){
             Vector3 localScale = transform.localScale;
@@ -70,14 +86,19 @@ public class Character : MonoBehaviour
             transform.localScale = localScale;
         }
     }
-    void Jump()
+    //Jump status(cooltime, height)
+    private IEnumerator Jump()
     {
+        canJump = false;
         rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.5f);
+        canJump = true;
     }
+    //If eat monster, heal.
     public void Eat(){
-        currentHealth += 4;
+        GM.currentHealth += 4;
     }
-    
+    //유저가 몬스터와 닿았을때, 상황별로 이벤트 작동
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Enemy")
@@ -95,11 +116,26 @@ public class Character : MonoBehaviour
                     Destroy(other.gameObject);
                 }
                 else{
-                    currentHealth--;
+                    GM.currentHealth--;
                 }
             }
-        } 
+        }
     }
+
+
+    public void playerDamaged(int damage)
+    {
+        if (isDashing)
+        {
+            return;
+        }
+        else
+        {
+            GM.currentHealth -= damage;
+        }
+    }
+
+    //Dash status(gravity, dash distance, cooltime)
     private IEnumerator Dash(){
         canDash = false;
         isDashing = true;
