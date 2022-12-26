@@ -20,7 +20,7 @@ public class EnemyMove2 : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Physics2D.IgnoreCollision(detectzone, Platformscript.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(Enemyscript.GetComponent<Collider2D>(), Platformscript.GetComponent<Collider2D>(), true);
 
         Invoke("Moving", 3);
     }

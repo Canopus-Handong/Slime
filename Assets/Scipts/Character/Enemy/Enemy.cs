@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     {
         if(health<=0){
             GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+            //change layer to default
+            gameObject.layer = 0;
         }
     }
     public void TakeDamage(int dmg)
