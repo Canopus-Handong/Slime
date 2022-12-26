@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     
@@ -118,8 +119,22 @@ public class PlayerController : MonoBehaviour
                     GM.currentHealth--;
                 }
             }
-        } 
+        }
     }
+
+
+    public void playerDamaged(int damage)
+    {
+        if (isDashing)
+        {
+            return;
+        }
+        else
+        {
+            GM.currentHealth -= damage;
+        }
+    }
+
     //Dash status(gravity, dash distance, cooltime)
     private IEnumerator Dash(){
         canDash = false;

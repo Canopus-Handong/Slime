@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - NoDestroy
   - Platform
+  - Bullet
   layers:
   - Default
   - TransparentFX
