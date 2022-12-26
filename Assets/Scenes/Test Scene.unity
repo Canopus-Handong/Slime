@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 429574381}
   - component: {fileID: 429574385}
   - component: {fileID: 429574386}
+  - component: {fileID: 429574387}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Player
@@ -592,6 +593,21 @@ MonoBehaviour:
   GM: {fileID: 0}
   jelly: {fileID: 3036297110975503080, guid: dc75c24c9775d0c478d903ee626d5eed, type: 3}
   coolTime: 1
+--- !u!114 &429574387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429574373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40dcb50bcddaee42a9b8a278ccca811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Platformscript: {fileID: 221811732}
+  Slimescript: {fileID: 429574373}
+  fallGround: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
