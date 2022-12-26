@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMove2 : MonoBehaviour
 {
     public GameObject Enemyscript;
-    public GameObject Detectzonescript;
     public GameObject Slimescript;
     public GameObject Platformscript;
     Rigidbody2D rigid;
@@ -19,7 +18,6 @@ public class EnemyMove2 : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        detectzone = Detectzonescript.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(Enemyscript.GetComponent<Collider2D>(), Platformscript.GetComponent<Collider2D>(), true);
     }
 
@@ -71,6 +69,7 @@ public class EnemyMove2 : MonoBehaviour
     {
         if(follow)
         {
+            //Moving
             rigid.velocity = new Vector2(enemyMove, rigid.velocity.y);
         }
         
