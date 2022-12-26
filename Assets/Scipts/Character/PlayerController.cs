@@ -24,12 +24,14 @@ public class PlayerController : MonoBehaviour
     public bool canJump = true;
 
     /*may add more variables in the future*/
+    //Dash status
     public void setPlayerDash(float dashPower, int dashDmg, float dashTime, float dashCoolTime){
         this.dashPower = dashPower;
         this.dashTime = dashTime;
         this.dashCoolTime = dashCoolTime;
         this.dashDamage = dashDmg;
     }
+    //Player moving speed
     public void setPlayerMovementStats(float speed){
         this.speed = speed;
     }
@@ -43,14 +45,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //If user is dashing, don't move by keyboard
         if(isDashing){
             return;
         }
         h = Input.GetAxisRaw("Horizontal");
+        //If the user is in contact with the floor and canjump with the up button, jump.
         if(IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow) && canJump)
         {
             StartCoroutine(Jump());
         }
+        //If the user candash with the shift button, dash.
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash){
             StartCoroutine(Dash());
             GM.currentHealth--;
@@ -59,16 +64,19 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //If user is dashing, don't move by keyboard
+        //If user turn back, turn back the direction of movement and the character
         if(isDashing){
             return;
         }
         rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
         Flip();
     }
-
+    //If the user is in contact with the platform layer, isgrounded state
     private bool IsGrounded(){
         return Physics2D.OverlapCircle(new Vector2(transform.position.x,transform.position.y-0.6f),0.2f,layerMask);
     }
+    //If user turn back, turn back
     private void Flip(){
         if(h>0 && !isFacingRight || h<0 && isFacingRight){
             Vector3 localScale = transform.localScale;
@@ -77,6 +85,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+    //Jump status(cooltime, height)
     private IEnumerator Jump()
     {
         canJump = false;
@@ -84,10 +93,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         canJump = true;
     }
+    //If eat monster, heal.
     public void Eat(){
         GM.currentHealth += 4;
     }
-    
+    //유저가 몬스터와 닿았을때, 상황별로 이벤트 작동
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Enemy")
@@ -110,6 +120,7 @@ public class PlayerController : MonoBehaviour
             }
         } 
     }
+    //Dash status(gravity, dash distance, cooltime)
     private IEnumerator Dash(){
         canDash = false;
         isDashing = true;
