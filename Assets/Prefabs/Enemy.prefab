@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7432069660399701168}
   - component: {fileID: 7432069660399701183}
   - component: {fileID: 7432069660399701182}
+  - component: {fileID: 8736575916355020133}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -163,12 +164,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemyscript: {fileID: 7432069660399701173}
-  Detectzonescript: {fileID: 7432069661433046581}
   Slimescript: {fileID: 0}
   Platformscript: {fileID: 0}
   detectzone: {fileID: 7432069661433046580}
   enemyMove: 0
   follow: 0
+--- !u!114 &8736575916355020133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432069660399701173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc9befcd1367b348aa4837842303a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4753030540429151329, guid: 01a98cdd915061c4095b721bf985deda, type: 3}
+  cool: 3
 --- !u!1 &7432069661433046581
 GameObject:
   m_ObjectHideFlags: 0
