@@ -101,4 +101,4 @@ MonoBehaviour:
   damage: 3
   layer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
