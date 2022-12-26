@@ -71,6 +71,7 @@ public class EnemyMove2 : MonoBehaviour
     {
         if(follow)
         {
+            //Moving
             rigid.velocity = new Vector2(enemyMove, rigid.velocity.y);
         }
         
