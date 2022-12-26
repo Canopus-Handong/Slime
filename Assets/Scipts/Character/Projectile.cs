@@ -22,14 +22,20 @@ public class Projectile : MonoBehaviour
             transform.Translate(transform.right * speed * Time.deltaTime);
         else
             transform.Translate(transform.right * -1 * speed * Time.deltaTime);
+
         RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.right, distance, isLayer);
+
         if(ray.collider != null)
         {
+            
             if(ray.collider.tag=="Enemy")
             {
                 ray.collider.GetComponent<Enemy>().TakeDamage(1);
             }
-            DestroyProjectile();
+            if (ray.collider.tag != "background")
+            {
+                DestroyProjectile();
+            }
         }
     }
     void DestroyProjectile()

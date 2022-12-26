@@ -101,5 +101,5 @@ MonoBehaviour:
   distance: 0
   isLayer:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
   isRight: 0
