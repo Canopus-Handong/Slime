@@ -20,7 +20,7 @@ public class EnemyMove2 : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Physics2D.IgnoreCollision(Enemyscript.GetComponent<Collider2D>(), Platformscript.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(detectzone, Platformscript.GetComponent<Collider2D>(), true);
 
         Invoke("Moving", 3);
     }
@@ -42,6 +42,18 @@ public class EnemyMove2 : MonoBehaviour
         //Check Platform
         Vector2 frontVec = new Vector2(rigid.position.x + enemyMove * 0.5f, rigid.position.y);
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
+
+        Vector2 frontVec2 = new Vector2(rigid.position.x + enemyMove * 0.5f, rigid.position.y + 0.5f);
+        RaycastHit2D rayHit2 = Physics2D.Raycast(frontVec2, Vector3.down, 1, LayerMask.GetMask("Platform"));
+
+        if (rayHit2.collider != null) {
+            if (notfollowButmove)
+            {
+                enemyMove = enemyMove * -1;
+                CancelInvoke();
+                Invoke("Moving", 5);
+            }
+        }
 
         //If there is no platform, stop
         if (rayHit.collider == null) {
