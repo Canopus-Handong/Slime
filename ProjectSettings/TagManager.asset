@@ -8,6 +8,7 @@ TagManager:
   - NoDestroy
   - Platform
   - Bullet
+  - background
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Character
   - Platform
   - Enemy
-  - 
+  - background
   - 
   - 
   - 
