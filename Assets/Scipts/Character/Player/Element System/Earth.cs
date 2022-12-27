@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : Element
+public class Earth : Element
 {
     private void Awake() {
-        this.nm = "Fire";
+        this.nm = "Earth";
     }
     public override void useElement()
     {
-        //dmg multiplier x2
-        Debug.Log("Fire");
+        //increase max hp with kills
+        Debug.Log("Earth");
     }
 
     public override void useElementTrace()
     {
-        //increase dmg
-        Debug.Log("Fire Trace");
+        //increase small max hp
+        Debug.Log("Earth Trace");
     }
 }

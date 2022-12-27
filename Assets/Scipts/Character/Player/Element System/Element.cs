@@ -11,12 +11,20 @@ public class ElementException : Exception
 }
 public abstract class Element : MonoBehaviour
 {
-    private GameObject GM;
+    public bool isActive = false;
+    public string nm;
+    public int numTrace = 0 ;
+    private GameManager GM;
     // Start is called before the first frame update
     void Awake(){
-        //GM = this.gameObject.GetComponent<GameManager>();
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+    //unique effects of element
     public abstract void useElement();
     public abstract void useElementTrace();
+
+    public void increaseTrace(){
+        numTrace++;
+    }
 }
