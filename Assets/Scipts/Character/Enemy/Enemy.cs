@@ -30,4 +30,12 @@ public class Enemy : MonoBehaviour
             damage=0;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D detect)
+    {
+        if (detect.gameObject.layer == 7)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
+    }
 }   
