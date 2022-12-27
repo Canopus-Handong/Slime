@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 27e689b4cfd16754d9a79c90578f6635
+guid: af3848665a537314faadac007d08f00d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0001_0
+      name: Slime_0
       rect:
         serializedVersion: 2
-        x: 140
-        y: 140
-        width: 48
-        height: 36
+        x: 24
+        y: 4
+        width: 80
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b7616f170e82cd41864bf38fb655013
-      internalID: 694473137
+      spriteID: e7cd797c2c5788b47bea47bc04d6a4ee
+      internalID: 1044491079
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-0001_0: 694473137
+      Slime_0: 1044491079
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
