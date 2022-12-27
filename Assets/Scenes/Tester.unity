@@ -945,7 +945,6 @@ MonoBehaviour:
   Slimescript: {fileID: 429574373}
   Platformscript: {fileID: 1134540021}
   detectzone: {fileID: 263936219}
-  movingSpeed: 1.5
   enemyMove: 0
   follow: 0
   notfollowButmove: 0
@@ -1033,6 +1032,14 @@ PrefabInstance:
       value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7432069660399701182, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: cool
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432069660399701182, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4753030540429151329, guid: 01a98cdd915061c4095b721bf985deda, type: 3}
+    - target: {fileID: 7432069660399701182, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: Slimescript
       value: 
       objectReference: {fileID: 429574373}
@@ -1048,8 +1055,43 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.316
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8736575916355020133, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+    - {fileID: 7432069660399701182, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+--- !u!1 &1077405602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7432069660399701173, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+  m_PrefabInstance: {fileID: 1077405601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1077405603 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7432069661433046580, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+  m_PrefabInstance: {fileID: 1077405601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077405604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077405602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c673c81cb1c2bad4ca75a0e2ab4bcde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemyscript: {fileID: 1077405602}
+  Slimescript: {fileID: 429574373}
+  Platformscript: {fileID: 1134540021}
+  detectzone: {fileID: 1077405603}
+  followSpeed: 2
+  notfollowSpeed: 1.2
+  enemyMove: 0
+  bullet: {fileID: 4753030540429151329, guid: 01a98cdd915061c4095b721bf985deda, type: 3}
+  cool: 3
+  follow: 0
+  notfollowButmove: 0
 --- !u!1 &1134540021
 GameObject:
   m_ObjectHideFlags: 0
