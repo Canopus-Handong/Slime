@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : Element
+public class Water : Element
 {
     private void Awake() {
-        this.nm = "Fire";
+        this.nm = "Water";
     }
     public override void useElement()
     {
-        //dmg multiplier x2
-        Debug.Log("Fire");
+        //dash reset on defeat
+        Debug.Log("Water");
     }
 
     public override void useElementTrace()
     {
-        //increase dmg
-        Debug.Log("Fire Trace");
+        //reduce dash cd
+        Debug.Log("Water Trace");
     }
 }
