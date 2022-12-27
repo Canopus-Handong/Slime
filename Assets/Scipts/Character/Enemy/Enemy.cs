@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public GameObject enemyHP1;
     public GameObject enemyHP2;
     public GameObject enemyHP3;
+    public Sprite[] HPbar;
     float onethirdHealth;
     // Start is called before the first frame update
     void Start()
@@ -37,15 +38,15 @@ public class Enemy : MonoBehaviour
 
         if (health <= onethirdHealth * 2)
         {
-            enemyHP1.GetComponent<SpriteRenderer>().color = Color.blue;
+            enemyHP1.GetComponent<SpriteRenderer>().sprite = HPbar[0];
         }
         if (health <= onethirdHealth * 1)
         {
-            enemyHP2.GetComponent<SpriteRenderer>().color = Color.blue;
+            enemyHP2.GetComponent<SpriteRenderer>().sprite = HPbar[1];
         }
         if (health <= 0)
         {
-            enemyHP3.GetComponent<SpriteRenderer>().color = Color.blue;
+            enemyHP3.GetComponent<SpriteRenderer>().sprite = HPbar[2];
         }
     }
 
