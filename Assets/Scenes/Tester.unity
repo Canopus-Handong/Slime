@@ -824,10 +824,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010107964, y: -0.05080737}
+  m_Offset: {x: 0.0015856028, y: -0.06443225}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -838,7 +838,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8180557, y: 0.791636}
+  m_Size: {x: 0.86918986, y: 0.87801766}
   m_EdgeRadius: 0
 --- !u!50 &966550157
 Rigidbody2D:
@@ -921,7 +921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966550153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 0.62, z: 0.17116703}
+  m_LocalPosition: {x: -0.189, y: 0.642, z: 0.17116703}
   m_LocalScale: {x: 1.1766, y: 1.1766, z: 1.1766}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -945,6 +945,7 @@ MonoBehaviour:
   Slimescript: {fileID: 429574373}
   Platformscript: {fileID: 1134540021}
   detectzone: {fileID: 263936219}
+  movingSpeed: 1.5
   enemyMove: 0
   follow: 0
   notfollowButmove: 0
@@ -956,8 +957,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7432069660399701168, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.877846
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432069660399701168, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.87633985
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432069660399701168, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.00014299154
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432069660399701168, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.058281213
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432069660399701168, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7432069660399701169, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: m_RootOrder
@@ -965,11 +982,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7432069660399701169, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.661749
+      value: 6.014
       objectReference: {fileID: 0}
     - target: {fileID: 7432069660399701169, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6364859
+      value: -1.574
       objectReference: {fileID: 0}
     - target: {fileID: 7432069660399701169, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1007,6 +1024,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7432069660399701171, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7432069660399701173, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -1019,6 +1040,14 @@ PrefabInstance:
       propertyPath: Platformscript
       value: 
       objectReference: {fileID: 1912076007}
+    - target: {fileID: 7432069661433046578, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7741559
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432069661433046578, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.316
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
 --- !u!1 &1134540021

@@ -9,6 +9,7 @@ public class EnemyMove2 : MonoBehaviour
     public GameObject Platformscript;
     Rigidbody2D rigid;
     public Collider2D detectzone;
+    public float movingSpeed = 1.2f;
     public int enemyMove;
     SpriteRenderer spriteRenderer;
 
@@ -20,18 +21,15 @@ public class EnemyMove2 : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //Physics2D.IgnoreCollision(Enemyscript.GetComponent<Collider2D>(), Platformscript.GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(detectzone, Platformscript.GetComponent<Collider2D>(), true);
 
         Invoke("Moving", 3);
     }
 
-    void Update()
-    {
-        FollwTarget();
-    }
-
     void FixedUpdate()
     {
+        FollwTarget();
+
         if (follow)
             SelectMoving();
         if (Enemyscript.GetComponent<Enemy>().health <= 0 && notfollowButmove)
@@ -96,6 +94,7 @@ public class EnemyMove2 : MonoBehaviour
         void Moving()
     {
         notfollowButmove = true;
+        movingSpeed = 1.2f;
 
         if (follow)
             return;
@@ -103,8 +102,10 @@ public class EnemyMove2 : MonoBehaviour
             enemyMove = 0;
             return;
         }
-        else {
+        else 
+        {
             enemyMove = Random.Range(-1,2);
+                
         }
 
         Invoke("Moving", 5);
@@ -115,7 +116,7 @@ public class EnemyMove2 : MonoBehaviour
         if(follow || notfollowButmove)
         {
             //Moving
-            rigid.velocity = new Vector2(enemyMove, rigid.velocity.y);
+            rigid.velocity = new Vector2(enemyMove * movingSpeed, rigid.velocity.y);
         }
         
         else
@@ -126,11 +127,11 @@ public class EnemyMove2 : MonoBehaviour
     {
         if (detect.tag == "Player")
         {
+            movingSpeed = 2.0f;
             follow = true;
             notfollowButmove = false;
             CancelInvoke();
         }
-            
     }
 
     private void OnTriggerExit2D(Collider2D detect)
@@ -140,6 +141,5 @@ public class EnemyMove2 : MonoBehaviour
             follow = false;
             Invoke("Moving", 5);
         }
-            
     }
 }
