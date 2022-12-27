@@ -9,7 +9,8 @@ public class EnemyMove2 : MonoBehaviour
     public GameObject Platformscript;
     Rigidbody2D rigid;
     public Collider2D detectzone;
-    public float movingSpeed = 1.2f;
+    public float followSpeed = 2.0f;
+    public float notfollowSpeed = 1.2f;
     public int enemyMove;
     SpriteRenderer spriteRenderer;
 
@@ -91,10 +92,9 @@ public class EnemyMove2 : MonoBehaviour
         }
     }
 
-        void Moving()
+    void Moving()
     {
         notfollowButmove = true;
-        movingSpeed = 1.2f;
 
         if (follow)
             return;
@@ -116,7 +116,10 @@ public class EnemyMove2 : MonoBehaviour
         if(follow || notfollowButmove)
         {
             //Moving
-            rigid.velocity = new Vector2(enemyMove * movingSpeed, rigid.velocity.y);
+            if (follow)
+                rigid.velocity = new Vector2(enemyMove * followSpeed, rigid.velocity.y);
+            else if (notfollowButmove)
+                rigid.velocity = new Vector2(enemyMove * notfollowSpeed, rigid.velocity.y);
         }
         
         else
@@ -127,7 +130,6 @@ public class EnemyMove2 : MonoBehaviour
     {
         if (detect.tag == "Player")
         {
-            movingSpeed = 2.0f;
             follow = true;
             notfollowButmove = false;
             CancelInvoke();
