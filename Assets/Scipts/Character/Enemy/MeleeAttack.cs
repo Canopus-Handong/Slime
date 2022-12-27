@@ -11,27 +11,27 @@ public class MeleeAttack : MonoBehaviour
 
     private float lastAttackTime;
 
-    void Update()
-    {
-        if (Time.time >= lastAttackTime + attackRate)
-        {
-            if (IsPlayerInRange())
-            {
-                Attack();
-                lastAttackTime = Time.time;
-            }
-        }
-    }
+    // void Update()
+    // {
+    //     if (Time.time >= lastAttackTime + attackRate)
+    //     {
+    //         if (IsPlayerInRange())
+    //         {
+    //             Attack();
+    //             lastAttackTime = Time.time;
+    //         }
+    //     }
+    // }
 
-    bool IsPlayerInRange()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
+    // bool IsPlayerInRange()
+    // {
+    //     float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
 
-        return distanceToPlayer <= attackRange;
-    }
+    //     return distanceToPlayer <= attackRange;
+    // }
 
-    void Attack()
-    {
-        PlayerController.instance.TakeDamage(attackDamage);
-    }
+    // void Attack()
+    // {
+    //     PlayerController.instance.TakeDamage(attackDamage);
+    // }
 }
