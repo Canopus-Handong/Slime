@@ -915,10 +915,7 @@ MonoBehaviour:
   enemyHP1: {fileID: 548649870}
   enemyHP2: {fileID: 1448092284}
   enemyHP3: {fileID: 1202099432}
-  HPbar:
-  - {fileID: -3876759189950653258, guid: 5d4daff38e3d9174b873918abcf2c1d4, type: 3}
-  - {fileID: -7642239419928554605, guid: 5d4daff38e3d9174b873918abcf2c1d4, type: 3}
-  - {fileID: 8596640243658272642, guid: 5d4daff38e3d9174b873918abcf2c1d4, type: 3}
+  HPbar: {fileID: 1044491079, guid: af3848665a537314faadac007d08f00d, type: 3}
 --- !u!61 &966550156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1157,6 +1154,10 @@ PrefabInstance:
       propertyPath: Platformscript
       value: 
       objectReference: {fileID: 1912076007}
+    - target: {fileID: 7432069660399701183, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: HPbar
+      value: 
+      objectReference: {fileID: 1044491079, guid: af3848665a537314faadac007d08f00d, type: 3}
     - target: {fileID: 7432069660399701183, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: enemyHP1
       value: 
