@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 429574382}
   - component: {fileID: 429574383}
   - component: {fileID: 429574384}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Slime
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721257995}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: jellyPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
