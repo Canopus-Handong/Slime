@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MapClearReward : MonoBehaviour
 {
-    public int reward;
+    public bool getReward = false;
 
     private void OnTriggerStay2D(Collider2D detect)
     {
         if (detect.tag == "Player")
         {
-            reward = Random.Range(1,13);
-            Debug.Log(reward + "번 보상을 획득하였습니다.");
-            Destroy(gameObject);
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                Debug.Log(gameObject.name + " 보상을 획득하였습니다.");
+                getReward = true;
+            }
+            
         }
             
     }

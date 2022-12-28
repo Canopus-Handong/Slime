@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     
     public GameManager GM;
+    public GameObject rewardscript;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     CapsuleCollider2D capsuleCollider;
@@ -16,9 +17,7 @@ public class PlayerController : MonoBehaviour
     float h;
     private float speed;
     private int dashDamage;
-    private GameObject rewardscript;
     public bool isFacingRight = true;
-    public int enemyCount;
     private bool canDash = true;
     private bool isDashing;
     private float dashPower;
@@ -44,11 +43,6 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-
-        rewardscript = GameObject.Find("fireReward");
-        rewardscript.SetActive(false);
-        GameObject[] obj = GameObject.FindGameObjectsWithTag("Enemy");
-        enemyCount = obj.Length;
     }
 
     void Update()
@@ -79,11 +73,6 @@ public class PlayerController : MonoBehaviour
         }
         rigid.velocity = new Vector2(h * speed, rigid.velocity.y);
         Flip();
-
-        if (enemyCount <= 0)
-        {
-            rewardscript.SetActive(true);
-        }
     }
     //If the user is in contact with the platform layer, isgrounded state
     private bool IsGrounded(){
@@ -120,14 +109,14 @@ public class PlayerController : MonoBehaviour
                 if(other.gameObject.GetComponent<Enemy>().health<=0){
                 Eat();
                 Destroy(other.gameObject);
-                enemyCount--;
+                rewardscript.GetComponent<PlayerReward>().enemyCount--;
                 }
             }
             else{
                 if(other.gameObject.GetComponent<Enemy>().health<=0){
                     Eat();
                     Destroy(other.gameObject);
-                    enemyCount--;
+                    rewardscript.GetComponent<PlayerReward>().enemyCount--;
                 }
                 else{
                     GM.currentHealth--;
