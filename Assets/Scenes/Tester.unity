@@ -2730,6 +2730,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1082295956}
     - target: {fileID: 7432069660399701183, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
+      propertyPath: AttackEffect
+      value: 
+      objectReference: {fileID: 49645596612251083, guid: 6a65c30e1a5f69f4880eaeafea474467, type: 3}
+    - target: {fileID: 7432069660399701183, guid: fc0c2fb5d8f058741960c16044e71ae3, type: 3}
       propertyPath: HPbar.Array.size
       value: 3
       objectReference: {fileID: 0}
