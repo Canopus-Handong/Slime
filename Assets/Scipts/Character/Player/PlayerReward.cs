@@ -12,10 +12,6 @@ public class PlayerReward : MonoBehaviour
     
     void Start()
     {
-        // if (SceneManager.GetSceneAt(2).name != "HealRoom")
-        //    isHealroom = false;
-        // else
-        //    isHealroom = true;
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "HealRoom")
            isHealroom = false;
         else

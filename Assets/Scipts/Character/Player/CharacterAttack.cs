@@ -9,6 +9,7 @@ public class CharacterAttack : MonoBehaviour
     public GameObject chargedjelly1;
     public GameObject chargedjelly2;
     public float chargeSpeed;
+    public bool HPdownmap;
 
     private Transform pos;
     private float chargeTime;
@@ -19,6 +20,11 @@ public class CharacterAttack : MonoBehaviour
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         pos = GameObject.Find("jellyPos").GetComponent<Transform>();
         chargeTime = 0;
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Tester")
+           HPdownmap = false;
+        else
+           HPdownmap = true;
     }
 
     // Update is called once per frame
@@ -39,15 +45,16 @@ public class CharacterAttack : MonoBehaviour
             {
                 /*if (chargeTime >= 1.5)
                 {
-                    //Â÷Â¡ 2´Ü°è
+                    //ï¿½ï¿½Â¡ 2ï¿½Ü°ï¿½
                     GM.currentHealth -= 2;
                     Instantiate(chargedjelly2, pos.position, transform.rotation);
                     curTime = coolTime;
                 }
                 else
                 {*/
-                    //Â÷Â¡ 1´Ü°è
-                    GM.currentHealth -= 2;
+                    //ï¿½ï¿½Â¡ 1ï¿½Ü°ï¿½
+                    if (HPdownmap)
+                        GM.currentHealth -= 2;
                     Instantiate(chargedjelly1, pos.position, transform.rotation);
                     curTime = coolTime;
 
@@ -55,7 +62,8 @@ public class CharacterAttack : MonoBehaviour
             }
             else if (Input.GetKeyUp(KeyCode.Space) && chargeTime < 0.75)
             {
-                GM.currentHealth -= 1;
+                if (HPdownmap)
+                    GM.currentHealth -= 1;
                 Instantiate(jelly, pos.position, transform.rotation);
                 curTime = coolTime;
             }
