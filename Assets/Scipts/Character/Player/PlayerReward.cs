@@ -12,10 +12,14 @@ public class PlayerReward : MonoBehaviour
     
     void Start()
     {
-        //if (SceneManager.GetSceneAt(2).name != "HealRoom")
+        // if (SceneManager.GetSceneAt(2).name != "HealRoom")
         //    isHealroom = false;
-        //else
+        // else
         //    isHealroom = true;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "HealRoom")
+           isHealroom = false;
+        else
+           isHealroom = true;
 
         for (int i = 0; i < rewardscript.Length; i++)
             rewardscript[i].SetActive(false);
