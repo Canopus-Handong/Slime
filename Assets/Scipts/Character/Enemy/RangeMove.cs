@@ -79,10 +79,12 @@ public class RangeMove : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
 
         Vector2 frontVec2 = new Vector2(rigid.position.x + enemyMove * 0.5f, rigid.position.y + 0.5f);
-        RaycastHit2D rayHit2 = Physics2D.Raycast(frontVec2, Vector3.down, 1, LayerMask.GetMask("Platform"));
+        RaycastHit2D rayHit2 = Physics2D.Raycast(frontVec2, Vector3.up, 1, LayerMask.GetMask("Platform"));
 
         if (rayHit2.collider != null)
         {
+            if (!notfollowButmove)
+                enemyMove = 0;
             if (notfollowButmove)
             {
                 enemyMove = enemyMove * -1;
