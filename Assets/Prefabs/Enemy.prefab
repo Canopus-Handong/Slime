@@ -151,6 +151,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   health: 3
+  enemyHP1: {fileID: 0}
+  enemyHP2: {fileID: 0}
+  enemyHP3: {fileID: 0}
+  HPbar: {fileID: 0}
 --- !u!114 &7432069660399701182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +172,10 @@ MonoBehaviour:
   Platformscript: {fileID: 0}
   detectzone: {fileID: 7432069661433046580}
   enemyMove: 0
+  followSpeed: 2
+  notfollowSpeed: 1.2
   follow: 0
+  notfollowButmove: 0
 --- !u!114 &8736575916355020133
 MonoBehaviour:
   m_ObjectHideFlags: 0

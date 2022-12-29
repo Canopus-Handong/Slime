@@ -10,6 +10,8 @@ public class EnemyMove2 : MonoBehaviour
     Rigidbody2D rigid;
     public Collider2D detectzone;
     public int enemyMove;
+    public float followSpeed = 2.0f;
+    public float notfollowSpeed = 1.2f;
     SpriteRenderer spriteRenderer;
 
     public bool follow = false;
@@ -25,13 +27,10 @@ public class EnemyMove2 : MonoBehaviour
         Invoke("Moving", 3);
     }
 
-    void Update()
-    {
-        FollwTarget();
-    }
-
     void FixedUpdate()
     {
+        FollwTarget();
+
         if (follow)
             SelectMoving();
         if (Enemyscript.GetComponent<Enemy>().health <= 0 && notfollowButmove)
@@ -112,10 +111,16 @@ public class EnemyMove2 : MonoBehaviour
 
     void FollwTarget()
     {
-        if(follow || notfollowButmove)
+        if(follow)
         {
             //Moving
-            rigid.velocity = new Vector2(enemyMove, rigid.velocity.y);
+            rigid.velocity = new Vector2(enemyMove * followSpeed, rigid.velocity.y);
+        }
+
+        else if(notfollowButmove)
+        {
+            //Moving
+            rigid.velocity = new Vector2(enemyMove * notfollowSpeed, rigid.velocity.y);
         }
         
         else

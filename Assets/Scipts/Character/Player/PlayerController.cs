@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     
     public GameManager GM;
+    public GameObject rewardscript;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     CapsuleCollider2D capsuleCollider;
@@ -103,20 +104,30 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Enemy")
         {
+            if(!isDashing && other.gameObject.GetComponent<Enemy>().health > 0)
+                GM.currentHealth--;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
             if(isDashing){
                 other.gameObject.GetComponent<Enemy>().TakeDamage(dashDamage);
-                if(other.gameObject.GetComponent<Enemy>().health<=0){
-                Eat();
-                Destroy(other.gameObject);
+                if(other.gameObject.GetComponent<Enemy>().health<=0)
+                {
+                    Eat();
+                    Destroy(other.gameObject);
+                    rewardscript.GetComponent<PlayerReward>().enemyCount--;
                 }
             }
             else{
-                if(other.gameObject.GetComponent<Enemy>().health<=0){
+                if(other.gameObject.GetComponent<Enemy>().health<=0)
+                {
                     Eat();
                     Destroy(other.gameObject);
-                }
-                else{
-                    GM.currentHealth--;
+                    rewardscript.GetComponent<PlayerReward>().enemyCount--;
                 }
             }
         }

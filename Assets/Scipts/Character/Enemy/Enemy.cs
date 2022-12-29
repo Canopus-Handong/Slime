@@ -6,9 +6,15 @@ public class Enemy : MonoBehaviour
 {
     public int damage;
     public int health;
+    public GameObject enemyHP1;
+    public GameObject enemyHP2;
+    public GameObject enemyHP3;
+    public Sprite HPbar;
+    float onethirdHealth;
     // Start is called before the first frame update
     void Start()
     {
+        onethirdHealth = health / 3;
     }
 
     // Update is called once per frame
@@ -28,6 +34,19 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             damage=0;
+        }
+
+        if (health <= onethirdHealth * 2)
+        {
+            enemyHP1.GetComponent<SpriteRenderer>().sprite = HPbar;
+        }
+        if (health <= onethirdHealth * 1)
+        {
+            enemyHP2.GetComponent<SpriteRenderer>().sprite = HPbar;
+        }
+        if (health <= 0)
+        {
+            enemyHP3.GetComponent<SpriteRenderer>().sprite = HPbar;
         }
     }
 
