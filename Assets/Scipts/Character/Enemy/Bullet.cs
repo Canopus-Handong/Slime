@@ -22,14 +22,9 @@ public class Bullet : MonoBehaviour
     void Update()
     {
 
-        if (dir.x < 0)
-        {
-            transform.Translate(transform.right * -1 * speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(transform.right * speed * Time.deltaTime);
-        }
+        
+        transform.Translate(dir.normalized * speed * Time.deltaTime);
+        
         RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.right, 0, layer);
         if (ray.collider != null)
         {
