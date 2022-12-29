@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Earth : Element
+public class Wind : Element
 {
     private void Awake() {
-        this.nm = "Earth";
+        this.nm = "Wind";
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.FindWithTag("Player");
     }
+
     public override void useElement()
     {
         if(isActive) {
-            Debug.Log("Earth already active");
+            Debug.Log("Wind already active");
             return;
         }
-        //increase max hp with kills
-        Debug.Log("Earth");
+        //increase attack speed
+        Debug.Log("Wind");
+        player.GetComponent<CharacterAttack>().coolTime *= 0.5f;
     }
 
     public override void useElementTrace()
     {
-        //increase small max hp
-        Debug.Log("Earth Trace");
+        //increase projectile speed
+        //tbd
+        Debug.Log("Wind Trace");
     }
 }

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     float h;
     private float speed;
-    private int dashDamage;
+    private float attackDmg;
     public bool isFacingRight = true;
     private bool canDash = true;
     private bool isDashing;
@@ -24,14 +24,15 @@ public class PlayerController : MonoBehaviour
     private float dashTime;
     private float dashCoolTime;
     public bool canJump = true;
+    public bool hasWater = false;
 
     /*may add more variables in the future*/
     //Dash status
-    public void setPlayerDash(float dashPower, int dashDmg, float dashTime, float dashCoolTime){
+    public void setPlayerDash(float dashPower, float attackDmg, float dashTime, float dashCoolTime){
         this.dashPower = dashPower;
         this.dashTime = dashTime;
         this.dashCoolTime = dashCoolTime;
-        this.dashDamage = dashDmg;
+        this.attackDmg = attackDmg;
     }
     //Player moving speed
     public void setPlayerMovementStats(float speed){
@@ -98,6 +99,8 @@ public class PlayerController : MonoBehaviour
     //If eat monster, heal.
     public void Eat(){
         GM.currentHealth += 4;
+        if(GM.earth) GM.earthCounter++;
+        if(hasWater) canDash = true;
     }
     //유저가 몬스터와 닿았을때, 상황별로 이벤트 작동
     void OnTriggerEnter2D(Collider2D other)
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             if(isDashing){
-                other.gameObject.GetComponent<Enemy>().TakeDamage(dashDamage);
+                other.gameObject.GetComponent<Enemy>().TakeDamage((int)attackDmg);
                 if(other.gameObject.GetComponent<Enemy>().health<=0)
                 {
                     Eat();

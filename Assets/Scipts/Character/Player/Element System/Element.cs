@@ -14,10 +14,10 @@ public abstract class Element : MonoBehaviour
     public bool isActive = false;
     public string nm;
     public int numTrace = 0 ;
-    private GameManager GM;
+    public GameManager GM;
+    public GameObject player;
     // Start is called before the first frame update
     void Awake(){
-        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     //unique effects of element
