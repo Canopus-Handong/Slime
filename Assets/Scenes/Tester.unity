@@ -1293,6 +1293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
   jelly: {fileID: 3036297110975503080, guid: dc75c24c9775d0c478d903ee626d5eed, type: 3}
+  chargedjelly1: {fileID: 2400337852686780669, guid: 5d66667a621369644ac16485c54f0639, type: 3}
+  chargedjelly2: {fileID: 5401589977247358389, guid: dc29747f918c3e44f8f9b7e2f783cfe1, type: 3}
+  chargeSpeed: 1
   coolTime: 0.25
 --- !u!96 &429574381
 TrailRenderer:

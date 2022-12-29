@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     public float distance;
+    public int damage;
     public LayerMask isLayer;
     public bool isRight;
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class Projectile : MonoBehaviour
             
             if(ray.collider.tag=="Enemy")
             {
-                ray.collider.GetComponent<Enemy>().TakeDamage(1);
+                ray.collider.GetComponent<Enemy>().TakeDamage(damage);
             }   
             
             DestroyProjectile();

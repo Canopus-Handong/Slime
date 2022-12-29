@@ -22,6 +22,8 @@ public class RangeMove : MonoBehaviour
     public bool follow = false;
     public bool notfollowButmove = false;
 
+    private bool isAlive;
+
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class RangeMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         Physics2D.IgnoreCollision(detectzone, Platformscript.GetComponent<Collider2D>(), true);
+        isAlive = true;
 
         Invoke("Moving", 3);
     }
@@ -38,26 +41,33 @@ public class RangeMove : MonoBehaviour
 
         FollwTarget();
 
-        if (follow)
+        if (isAlive)
         {
-            SelectMoving();
-            if (frame % (cool * 50) == 0)
+            if (follow)
             {
-                Bullet();
-            }
-            frame++;
-        }
-        else
-        {
-            if (frame > 0)
-            {
-                if (frame % (cool * 50) != 0)
+                SelectMoving();
+                if (frame % (cool * 50) == 0)
                 {
-                    frame++;
+                    Bullet();
+                }
+                frame++;
+            }
+            else
+            {
+                if (frame > 0)
+                {
+                    if (frame % (cool * 50) != 0)
+                    {
+                        frame++;
+                    }
                 }
             }
         }
 
+        if (Enemyscript.GetComponent<Enemy>().health <= 0)
+        {
+            isAlive = false;
+        }
 
         if (Enemyscript.GetComponent<Enemy>().health <= 0 && notfollowButmove)
         {
